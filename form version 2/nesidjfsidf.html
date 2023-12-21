@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="iofsif.css">
+</head>
+
+<body>
+    <div class="containner">
+        <form>
+            <div class="input_box">
+                <label>Name</label>
+                <input type="text" id="input_name" placeholder="Full name" onkeyup="Name();">
+                <span id="span_name"></span>
+            </div>
+            <div class="input_box">
+                <label>email</label>
+                <input type="email" id="input_email" placeholder="email" 
+                onkeyup="Email();"
+                >
+                <span id="span_email"></span>
+            </div>
+            <div class="input_box">
+                <label>phone</label>
+                <input type="text" id="input_number" placeholder="phone number"
+                onkeyup="king()"
+                >
+                <span id="span_phone" class="b"></span>
+            </div>
+            <div class="input_box">
+                <label>Messege</label>
+                <textarea id="input_textarea" rows="10" onkeyup="kingg()"></textarea>
+                <span id="span_textarea"></span>
+            </div>
+            <button id="btn">OK</button>
+            <p id="p"> </p>
+        </form>
+    </div>
+    <script>
+        const span_textarea = document.getElementById('span_textarea');
+        const span_phone = document.getElementById('span_phone');
+        const span_email = document.getElementById('span_email');
+        const span_name = document.getElementById('span_name');
+
+        const p=document.getElementById('p');
+
+      
+      
+     
+
+        function Name(){
+            const input_name = document.getElementById('input_name').value;
+    if(input_name.length==0){
+        span_name.innerHTML='name is required';
+        return false;
+    }
+     if(!input_name.match(/^[A-za-z]*\s{1}[A-za-z]*$/)){
+        span_name.innerHTML='write full name';
+        return false;
+    }
+    span_name.innerHTML= '<img src="jk.png"></img>'
+    return true;
+}
+function Email(){
+    const input_email = document.getElementById('input_email').value;
+    if(input_email.length==0){
+        span_email.innerHTML='email is reqried';
+        return false;
+    }
+
+    if(!input_email.match(/^[A-za-z\._\-[0-9]*[@][A-za-z]*[\.][a-z]{2,4}$/)){
+        span_email.innerHTML='Invaled Email';
+        return false;
+    }
+    else{
+        span_email.innerHTML='<img src="jk.png"></img>';
+        return true;
+    }
+  
+
+
+}
+function king(){
+    const input_number = document.getElementById('input_number').value;
+    if(input_number.length==0){
+        span_phone.innerHTML='req';
+        return false;
+    }
+    if(input_number.length!==10){
+        span_phone.innerHTML='less'
+    }
+    if(!input_number.match(/^[0-9]{10}$/)){
+        span_phone.innerHTML='only digit please';
+        return false;
+    }
+    else{
+        span_phone.innerHTML='<img src="jk.png"></img>';
+        return true;
+    }
+}
+function kingg(){
+    
+    const input_textarea = document.getElementById('input_textarea').value;
+
+    var reqried=30;
+    var temp=reqried-input_textarea.length;
+    if(temp>0){
+        span_textarea.innerHTML=temp+'character requied';
+        return false;
+    }
+    else{
+        span_textarea.innerHTML='<img src="jk.png"></img>';
+        return true;
+    }
+}
+document.getElementById('btn').onclick = function(){
+        if(!Name() || !king() || !Email() || !kingg()){
+            p.style.display='block';
+            p.innerHTML='Please fix error to submit';
+            setTimeout(function(){ p.style.display='none';},3000);
+            return false;
+        }
+    }
+    </script>
+</body>
+
+</html>
